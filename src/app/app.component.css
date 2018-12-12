@@ -1,0 +1,21 @@
+body{
+  float: left;
+  margin: 10px 10px 10px 10px;
+}
+
+input{
+  align: left;
+}
+
+
+h1{
+  font-family:Arial, Helvetica, sans-serif;
+  color: #a9a9a9;
+}
+
+h2, h3{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #d3d3d3;
+}
+
+
