@@ -1,5 +1,5 @@
 <div *ngIf="messageService.messages.length">
 <h2>Notifications</h2>
-<button class="clear" (click)="messageService.clear()">Dismiss</button>
+<button class="dismiss" (click)="messageService.dismiss()">Dismiss</button>
   <div *ngFor="let message of messageService.messages">{{message}}</div>
 </div>

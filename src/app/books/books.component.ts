@@ -7,7 +7,6 @@ import { BookService } from '../book.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  selectedBook: Book;
   books: Book[];
   constructor(private bookService: BookService) { }
 
@@ -17,9 +16,6 @@ export class BooksComponent implements OnInit {
   getBooks(): void {
     this.bookService.getBooks()
       .subscribe(books => this.books = books);
-  }
-  onSelect(book: Book): void {
-    this.selectedBook = book;
   }
 
 }

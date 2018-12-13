@@ -1,9 +1,8 @@
 <h2 class="heading">My Book List</h2>
 <ul class='books' >
-  <li *ngFor="let book of books" [class.selected]="book === selectedBook"
-      (click)="onSelect(book)">
+  <li *ngFor="let book of books">
+    <a routerLink="/detail/{{book.id}}">
     <span class="badge">{{book.id}}</span>{{book.title}}
+    </a>
   </li>
 </ul>
-<app-book-details [book]="selectedBook"></app-book-details>
-<app-notification></app-notification>

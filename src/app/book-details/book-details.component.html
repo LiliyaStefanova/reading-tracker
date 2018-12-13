@@ -1,9 +1,20 @@
 <div class="details" *ngIf="book">
   <h2 class="heading">{{book.title | uppercase}} Details</h2>
   <div><span>id: </span>{{book.id}}</div>
-  <div>
     <label>Name
       <input [(ngModel)]="book.title" placeholder="title">
     </label>
-  </div>
+    <label>Author
+      <input [(ngModel)]="book.author" placeholder="author">
+    </label>
+    <label>Genre
+      <input [(ngModel)]="book.genre" placeholder="genre">
+    </label>
+    <label>Notes
+      <textarea [(ngModel)]="book.notes" placeholder="notes"></textarea>
+    </label>
+    <label>Favourite
+      <input [(ngModel)]="book.star" placeholder="star">
+    </label>
+  <button (click)="goBack()">Back</button>
 </div>

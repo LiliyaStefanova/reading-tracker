@@ -1,0 +1,9 @@
+<h2>Favourites</h2>
+<div class="grid grid-pad">
+  <a *ngFor="let book of books" class="favourites"
+      routerLink="/detail/{{book.id}}">
+    <div class="module book">
+      <h4>{{book.title}}</h4>
+    </div>
+  </a>
+</div>

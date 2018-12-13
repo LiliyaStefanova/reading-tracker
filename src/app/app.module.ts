@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { NotificationComponent } from './notification/notification.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
     BookDetailsComponent,
-    NotificationComponent
+    NotificationComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
