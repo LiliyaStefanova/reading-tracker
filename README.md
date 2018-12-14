@@ -9,7 +9,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Cd into the folder where you cloned the project. Then run `json-server --watch db.json` in order to start the server. 
 
-The resources will be available on [Resources] (http://localhost:3000/books)
+The resources will be available on [Resources](http://localhost:3000/books).
 
 ## Code scaffolding
 
