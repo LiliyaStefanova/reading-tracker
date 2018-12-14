@@ -4,5 +4,42 @@
     <a routerLink="/detail/{{book.id}}">
     <span class="badge">{{book.id}}</span>{{book.title}}
     </a>
+    <button class="delete" title="Delete" (click)="deleteBook(book.id)">x</button>
   </li>
 </ul>
+<br/>
+<div>
+  <label>Title:
+    <input type="text" #bookTitle/>
+  </label>
+  <br/>
+  <label>Author:
+    <input type="text" #bookAuthor/>
+  </label>
+  <br/>
+  <label>Genre:
+    <input type="text" #bookGenre/>
+  </label>
+  <br/>
+  <label>Notes:
+    <textarea #bookNotes></textarea>
+  </label>
+  <br/>
+  <label>Read:
+    <input type="checkbox" #bookRead/>
+  </label>
+  <br/>
+  <label>Favourite:
+    <input type="checkbox" #bookStar/>
+  </label>
+  <br/>
+  <button (click)="addBook({title:bookTitle.value,
+                        author: bookAuthor.value,
+                        genre: bookGenre.value,
+                        notes: bookNotes.value,
+                        read: bookRead.value,
+                        star: bookStar.value });
+                  bookTitle.value=''">
+    Add
+  </button>
+</div>

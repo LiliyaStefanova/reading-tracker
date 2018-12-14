@@ -5,4 +5,5 @@ export class Book {
   genre: string;
   notes: string;
   star: boolean;
+  read: boolean;
 }

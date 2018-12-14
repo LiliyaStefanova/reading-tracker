@@ -1,0 +1,103 @@
+{
+  "books": [
+    {
+      "id": 10,
+      "title": "The Aeneid",
+      "author": "Virgil",
+      "genre": "epic",
+      "notes": "",
+      "star": false,
+      "read": false
+    },
+    {
+      "id": 11,
+      "title": "Witches Abroad",
+      "author": "Terry Pratchett",
+      "genre": "fantasy",
+      "notes": "The Witches go on a Disc world trip",
+      "star": true,
+      "read": true
+    },
+    {
+      "id": 12,
+      "title": "Thinking fast and slow",
+      "author": "Daniel Kahneman",
+      "genre": "non-fiction",
+      "notes": "",
+      "star": false,
+      "read": false
+    },
+    {
+      "id": 13,
+      "title": "The Black Swan",
+      "author": "Nassim Taleb",
+      "genre": "non-fiction",
+      "notes": "low probability high impact risk events",
+      "star": true,
+      "read": true
+    },
+    {
+      "id": 14,
+      "title": "How to solve it",
+      "author": "George Polya",
+      "genre": "non-fiction",
+      "notes": "",
+      "star": false,
+      "read": false
+    },
+    {
+      "id": 15,
+      "title": "Beyond good and evil",
+      "author": "Friedrich Nietzsche",
+      "genre": "philosophy",
+      "notes": "",
+      "star": true,
+      "read": false
+    },
+    {
+      "id": 16,
+      "title": "The Second World War",
+      "author": "Anthony Beevor",
+      "genre": "history",
+      "notes": "An extensive and brilliant narrative on all war fronts",
+      "star": true,
+      "read": true
+    },
+    {
+      "id": 17,
+      "title": "The Art of War",
+      "author": "Sun Tzu",
+      "genre": "manual",
+      "notes": "",
+      "star": true,
+      "read": false
+    },
+    {
+      "id": 18,
+      "title": "American Gods",
+      "author": "Neil Gaiman",
+      "genre": "fantasy",
+      "notes": "What happened when immigrants brought their gods to America",
+      "star": false,
+      "read": true
+    },
+    {
+      "id": 19,
+      "title": "Brief History of Time",
+      "author": "Stephen Hawking",
+      "genre": "physics",
+      "notes": "Space and time for dummies",
+      "star": true,
+      "read": true
+    },
+    {
+      "id": 20,
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "genre": "classics",
+      "notes": "Victorian romance novel",
+      "star": false,
+      "read": true
+    }
+  ]
+}

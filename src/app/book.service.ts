@@ -1,23 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book';
-import { TEST_BOOKS } from './test-books';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
 import { MessageService } from './message.service';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+  lastId = 0;
+  books: Book [] = [];
 
-  constructor(private messageService: MessageService) { }
-
-  getBooks(): Observable<Book[]> {
-    this.messageService.add('received all books');
-    return of(TEST_BOOKS);
+  constructor(private messageService: MessageService, private apiService: ApiService) { }
+  addBook(book: Book): Observable<Book> {
+    return this.apiService.addBook(book);
   }
-  getBook(id: number): Observable<Book> {
+  getAllBooks(): Observable<Book[]> {
+    this.messageService.add(`Fetched all books`);
+    return this.apiService.getAllBooks();
+  }
+  getBook(id: number): Book {
     this.messageService.add(`BookService: fetched book with id ${id}`);
-    return of(TEST_BOOKS.find(book => book.id === id));
+    return this.apiService.getBookById(id);
+  }
+  setBookReadStatus(book: Book) {
+    book.read = !book.read;
+    // TODO take a deep copy of this object to prevent it from being mutated
+    return this.apiService.updateBook(book);
+  }
+  setBookFavouriteStatus(book: Book) {
+    book.star = !book.star;
+    return this.apiService.updateBook(book);
+  }
+  deleteBook(id: number): Observable<Book> {
+    return this.apiService.deleteBookById(id);
+  }
+  updateBook(book: Book): Observable<Book> {
+    return this.apiService.updateBook(book);
   }
 
 }

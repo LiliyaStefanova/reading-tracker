@@ -14,8 +14,25 @@ export class BooksComponent implements OnInit {
     this.getBooks();
   }
   getBooks(): void {
-    this.bookService.getBooks()
+    this.bookService.getAllBooks()
       .subscribe(books => this.books = books);
+  }
+  addBook(data: Object): void {
+    const title = data.title;
+    if (!title) {
+      return;
+    }
+    data.read === 'on' ? data.read = true : data.read = false;
+    data.star === 'on' ? data.star = true : data.star = false;
+    this.bookService.addBook(data as Book)
+      .subscribe(book => {
+        this.books.push(book);
+      });
+  }
+  deleteBook(id: number) {
+    this.books = this.books.filter(book => book.id !== id);
+    this.bookService.deleteBook(id)
+      .subscribe();
   }
 
 }
