@@ -22,7 +22,7 @@
       "id": 12,
       "title": "Thinking fast and slow",
       "author": "Daniel Kahneman",
-      "genre": "Non-fiction",
+      "genre": "Choose..",
       "notes": "",
       "star": false,
       "read": false
@@ -87,7 +87,7 @@
       "author": "Stephen Hawking",
       "genre": "Non-fiction",
       "notes": "Space and time for dummies",
-      "star": true,
+      "star": false,
       "read": true
     },
     {

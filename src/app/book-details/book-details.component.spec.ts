@@ -5,9 +5,8 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {BookService} from '../book.service';
 import {ApiService} from '../api.service';
 import {ApiMockService} from '../api-mock.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, convertToParamMap} from '@angular/router';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { of } from 'rxjs';
 
 describe('BookDetailsComponent', () => {
   let component: BookDetailsComponent;
@@ -27,7 +26,11 @@ describe('BookDetailsComponent', () => {
         },
         {
           provide: ActivatedRoute,
-          useValue: {snapshot: {params: {'id': '123'}}}
+          useValue: {
+            snapshot: {
+              paramMap:  convertToParamMap({ id: 1 })
+            }
+          }
         },
         Location,
         {
