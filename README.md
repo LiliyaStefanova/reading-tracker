@@ -7,9 +7,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Mock REST API server
 
-Cd into the folder where you cloned the project. Then run `json-server --watch db.json` in order to start the server. 
+Cd into the folder where you cloned the project. Then run `npm run json-server --watch db.json` in order to start the API server. 
 
-The resources will be available on [Resources](http://localhost:3000/books).
+The API resources will be available to view on [Resources](http://localhost:3000/books).
 
 ## Code scaffolding
 
