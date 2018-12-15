@@ -5,6 +5,12 @@
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Mock REST API server
+
+Cd into the folder where you cloned the project. Then run `json-server --watch db.json` in order to start the server. 
+
+The resources will be available on [Resources](http://localhost:3000/books).
+
 ## Code scaffolding
 
 
