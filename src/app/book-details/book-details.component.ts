@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { BookService } from '../book.service';
 import { Book } from '../book';
-import { FormControl } from '@angular/forms';
+import { genre } from '../constants';
+
 
 @Component({
   selector: 'app-book-details',
@@ -11,9 +12,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-  name = new FormControl('');
-  @Input() book: Book;
 
+  @Input() book: Book;
+  genres = genre;
   constructor(private route: ActivatedRoute,
               private bookService: BookService,
               private location: Location) { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
 import { Book } from '../book';
 import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-books',
@@ -9,6 +10,14 @@ import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+  addForm = new FormGroup({
+    title: new FormControl(''),
+    author: new FormControl(''),
+    genre: new FormControl(''),
+    notes: new FormControl(''),
+    star: new FormControl(''),
+    read: new FormControl('')
+  });
   books: Book[];
   faStar = faStar;
   faCheck = faCheck;

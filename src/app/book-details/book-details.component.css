@@ -6,6 +6,11 @@
 }
 
 .heading{
-  text-align: left;
+  text-align: center;
   margin: .5em;
+  color: lightgrey;
+}
+
+.back-button{
+  margin-top: 15px;
 }
