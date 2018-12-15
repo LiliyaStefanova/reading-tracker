@@ -1,7 +1,11 @@
 <title>{{title}}</title>
-<nav>
-  <a routerLink="/landing">Home </a>
-  <a routerLink="/books">Books</a>
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" routerLink="/landing">Home </a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/books">Books <span class="sr-only">Books</span></a>
+      </li>
+    </ul>
 </nav>
 <router-outlet></router-outlet>
 <app-notification></app-notification>

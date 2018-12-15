@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
+import { Book } from '../book';
+import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-books',
@@ -8,6 +10,8 @@ import { BookService } from '../book.service';
 })
 export class BooksComponent implements OnInit {
   books: Book[];
+  faStar = faStar;
+  faCheck = faCheck;
   constructor(private bookService: BookService) { }
 
   ngOnInit() {
@@ -17,7 +21,8 @@ export class BooksComponent implements OnInit {
     this.bookService.getAllBooks()
       .subscribe(books => this.books = books);
   }
-  addBook(data: Object): void {
+  addBook(data: any): void {
+    console.log(data);
     const title = data.title;
     if (!title) {
       return;

@@ -6,4 +6,7 @@ export class Book {
   notes: string;
   star: boolean;
   read: boolean;
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 }

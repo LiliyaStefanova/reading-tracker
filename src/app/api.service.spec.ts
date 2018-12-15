@@ -1,12 +1,28 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ApiService } from './api.service';
-
-describe('ApiService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
-    const service: ApiService = TestBed.get(ApiService);
-    expect(service).toBeTruthy();
-  });
-});
+// import { TestBed, inject } from '@angular/core/testing';
+//
+// import { ApiService } from './api.service';
+// import { HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+//
+// describe('ApiService', () => {
+//   let apiService: ApiService;
+//   let httpMock: HttpTestingController;
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       imports: [
+//         HttpClientTestingModule
+//       ],
+//       providers: [
+//         ApiService
+//       ]
+//
+//     });
+//     apiService = TestBed.get(ApiService);
+//     httpMock = TestBed.get(HttpTestingController);
+//   });
+//
+// });
+  //
+  // it('should inject the Api Service', () => {
+  //   expect(service).toBeTruthy();
+  // });
+// });

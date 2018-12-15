@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment} from '../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/internal/operators';
+import { catchError, tap, map } from 'rxjs/internal/operators';
 import { Observable, of } from 'rxjs';
 import {Book} from './book';
 
 const URL = environment.apiUrl;
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}),
 };
 
 @Injectable({
@@ -31,6 +31,7 @@ export class ApiService {
     return this.http
       .get(url)
       .pipe(
+        map(book => book as Book),
         tap(_ => console.log(`fetched book with id=${id}`)),
         catchError(this.handleErrors<Book>(`getBookById id=${id}`))
       );
@@ -53,13 +54,13 @@ export class ApiService {
         catchError(this.handleErrors<any>(`updateBook`))
       );
   }
-  public deleteBookById(id: Number): Observable<null> {
+  public deleteBookById(id: Number): Observable<any> {
     const url = `${URL}/books/${id}`;
     return this.http
       .delete<Book>(url, httpOptions)
       .pipe(
         tap(_ => console.log(`deleted book with id: ${id}`)),
-        catchError(this.handleErrors<Book>('deleteBookById'))
+        catchError(this.handleErrors<any>('deleteBookById'))
       );
   }
   private handleErrors<T>(operation = 'operation', result?: T) {

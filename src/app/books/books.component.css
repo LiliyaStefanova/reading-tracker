@@ -1,63 +1,12 @@
-.books {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 25em;
+.book-container{
+  margin-top: 20px;
 }
 
-.books li{
-  cursor: pointer;
-  position: relative;
-  left:0;
-  background-color: #E9E9E9;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
-  text-align: left;
-}
-
-.books li:hover{
-  color: grey;
-  background-color: lightgrey;
-  left: .1em;
-}
-
-.books a{
-  color: #888888;
-  text-decoration: none;
-  position:relative;
-  display:block;
-  width:250px;
-}
-
-.books a:hover{
-  color: #607d8b;
-}
-
-
-.books .badge{
-  display: inline-block;
-  font-size:small;
-  color: darkslategray;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: lightcoral;
-  line-height: 1em;
-  position: relative;
-  left:-1px;
-  top:-4px;
-  height:1.8em;
+.status-badge{
   margin-right: .8em;
-  border-radius: 4px 0 0 4px;
+  margin-left: .8em;
 }
 
-button.delete{
-  position: relative;
-  left:300px;
-  top: -32px;
-  background-color: grey !important;
-  color: white;
-}
 
 .heading{
   text-align: left;

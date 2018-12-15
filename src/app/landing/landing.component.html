@@ -1,9 +1,14 @@
-<h2>Favourites</h2>
-<div class="grid grid-pad">
-  <a *ngFor="let book of books" class="favourites"
-      routerLink="/detail/{{book.id}}">
-    <div class="module book">
-      <h4>{{book.title}}</h4>
+<div class="container-fluid">
+  <h3 class="display-3">Favourites</h3>
+  <div class="row">
+    <div class="col-sm-3" *ngFor="let book of books">
+      <div class="card favourite-card">
+        <div class="card-body">
+          <h5 class="card-title">{{book.title}}</h5>
+          <p class="card-text">{{book.notes}}</p>
+          <a routerLink="/detail/{{book.id}}" class="btn btn-primary">Details</a>
+        </div>
+      </div>
     </div>
-  </a>
+  </div>
 </div>

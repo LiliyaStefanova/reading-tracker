@@ -8,7 +8,6 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class BookService {
-  lastId = 0;
   books: Book [] = [];
 
   constructor(private messageService: MessageService, private apiService: ApiService) { }
@@ -19,7 +18,7 @@ export class BookService {
     this.messageService.add(`Fetched all books`);
     return this.apiService.getAllBooks();
   }
-  getBook(id: number): Book {
+  getBook(id: number): Observable<Book> {
     this.messageService.add(`BookService: fetched book with id ${id}`);
     return this.apiService.getBookById(id);
   }
@@ -32,7 +31,7 @@ export class BookService {
     book.star = !book.star;
     return this.apiService.updateBook(book);
   }
-  deleteBook(id: number): Observable<Book> {
+  deleteBook(id: number): Observable<any> {
     return this.apiService.deleteBookById(id);
   }
   updateBook(book: Book): Observable<Book> {

@@ -1,12 +1,25 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component} from '@angular/core';
+
+@Component({selector: 'router-outlet', template: ''})
+class RouterOutletStubComponent {}
+
+@Component({selector: 'app-notification', template: ''})
+class NotificationStubComponent {}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        RouterOutletStubComponent,
+        NotificationStubComponent
       ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
     }).compileComponents();
   }));
 
@@ -22,10 +35,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('my-book-tracker');
   });
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to my-book-tracker!');
-  });
 });

@@ -1,45 +1,75 @@
-<h2 class="heading">My Book List</h2>
-<ul class='books' >
-  <li *ngFor="let book of books">
-    <a routerLink="/detail/{{book.id}}">
-    <span class="badge">{{book.id}}</span>{{book.title}}
-    </a>
-    <button class="delete" title="Delete" (click)="deleteBook(book.id)">x</button>
-  </li>
-</ul>
-<br/>
-<div>
-  <label>Title:
-    <input type="text" #bookTitle/>
-  </label>
-  <br/>
-  <label>Author:
-    <input type="text" #bookAuthor/>
-  </label>
-  <br/>
-  <label>Genre:
-    <input type="text" #bookGenre/>
-  </label>
-  <br/>
-  <label>Notes:
-    <textarea #bookNotes></textarea>
-  </label>
-  <br/>
-  <label>Read:
-    <input type="checkbox" #bookRead/>
-  </label>
-  <br/>
-  <label>Favourite:
-    <input type="checkbox" #bookStar/>
-  </label>
-  <br/>
-  <button (click)="addBook({title:bookTitle.value,
+<div class="container-fluid book-container">
+<div class="row">
+  <div class="col-6">
+    <ul class='list-group'>
+      <li *ngFor="let book of books" class="list-group-item d-flex justify-content-between align-items-center">
+          <a routerLink="/detail/{{book.id}}">
+            <span class="badge badge-primary">{{book.id}}</span>
+            {{book.title}}
+            <span class="badge badge-warning badge-pill status-badge" tabindex="0"
+                data-toggle="tooltip" title="This is a favourite" >
+              <fa-icon [icon]="faStar" *ngIf="book.star" align="right"></fa-icon>
+            </span>
+            <span class="badge badge-secondary badge-pill" tabindex="0"
+                    data-toggle="tooltip" title="I've read this book">
+              <fa-icon [icon]="faCheck" *ngIf="book.read"></fa-icon>
+            </span>
+          </a>
+        <button type="button" class="btn btn-secondary btn-sm" title="Delete" (click)="deleteBook(book.id)">
+          x
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="col-4">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Title</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Title" aria-label="Title"
+             aria-describedby="basic-addon1" #bookTitle required>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon2">Author</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Author" aria-label="Author"
+             aria-describedby="basic-addon2" #bookAuthor required>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">Genre</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Genre" aria-label="Genre"
+             aria-describedby="basic-addon3" #bookGenre required>
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Notes</span>
+      </div>
+      <textarea class="form-control" aria-label="Notes" placeholder="Notes" #bookNotes></textarea>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="readBook" #bookRead>
+        <label class="form-check-label" for="readBook">
+           Mark as read
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="starBook" #bookStar>
+        <label class="form-check-label" for="starBook">
+          Mark as favourite
+        </label>
+      </div>
+    </div>
+    <button class="btn btn-sm btn-primary" (click)="addBook({title:bookTitle.value,
                         author: bookAuthor.value,
                         genre: bookGenre.value,
                         notes: bookNotes.value,
                         read: bookRead.value,
                         star: bookStar.value });
-                  bookTitle.value=''">
-    Add
-  </button>
+                  bookTitle.value=''">Add</button>
+  </div>
+</div>
 </div>

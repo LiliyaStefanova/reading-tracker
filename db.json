@@ -89,15 +89,6 @@
       "notes": "Space and time for dummies",
       "star": true,
       "read": true
-    },
-    {
-      "id": 20,
-      "title": "Pride and Prejudice",
-      "author": "Jane Austen",
-      "genre": "classics",
-      "notes": "Victorian romance novel",
-      "star": false,
-      "read": true
     }
   ]
 }
