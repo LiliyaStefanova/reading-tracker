@@ -5,6 +5,7 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {BookService} from '../book.service';
 import {ApiService} from '../api.service';
 import {ApiMockService} from '../api-mock.service';
+import { FormBuilder } from '@angular/forms';
 
 describe('BooksComponent', () => {
   let component: BooksComponent;
@@ -19,7 +20,8 @@ describe('BooksComponent', () => {
       providers: [
         BookService,
         {provide: ApiService,
-         useClass: ApiMockService}
+         useClass: ApiMockService},
+        FormBuilder
       ]
     })
     .compileComponents();

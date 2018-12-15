@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
 import { Book } from '../book';
 import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { genre } from '../constants';
 
 @Component({
   selector: 'app-books',
@@ -10,18 +11,19 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  addForm = new FormGroup({
-    title: new FormControl(''),
-    author: new FormControl(''),
-    genre: new FormControl(''),
-    notes: new FormControl(''),
-    star: new FormControl(''),
-    read: new FormControl('')
+  addForm = this.fb.group({
+    title: ['', [Validators.required, Validators.minLength(4)]],
+    author: ['', [Validators.required, Validators.minLength(2)]],
+    genre: ['', [Validators.required]],
+    notes: [''],
+    star: [''],
+    read: ['']
   });
   books: Book[];
   faStar = faStar;
   faCheck = faCheck;
-  constructor(private bookService: BookService) { }
+  genres = genre;
+  constructor(private bookService: BookService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getBooks();
@@ -36,8 +38,6 @@ export class BooksComponent implements OnInit {
     if (!title) {
       return;
     }
-    data.read === 'on' ? data.read = true : data.read = false;
-    data.star === 'on' ? data.star = true : data.star = false;
     this.bookService.addBook(data as Book)
       .subscribe(book => {
         this.books.push(book);

@@ -1,11 +1,12 @@
 <title>{{title}}</title>
 <nav class="navbar navbar-dark bg-primary">
-    <a class="navbar-brand" routerLink="/landing">Home </a>
+    <a class="navbar-brand nav" routerLink="/landing">Home </a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/books">Books <span class="sr-only">Books</span></a>
+        <a class="nav-link nav" routerLink="/books">Books <span class="sr-only">Books</span></a>
       </li>
     </ul>
+  <fa-icon [icon]="faBookReader" class="logo"></fa-icon>
 </nav>
 <router-outlet></router-outlet>
 <app-notification></app-notification>
