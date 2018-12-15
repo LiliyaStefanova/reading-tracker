@@ -42,6 +42,7 @@ export class BooksComponent implements OnInit {
       .subscribe(book => {
         this.books.push(book);
       });
+    this.addForm.reset();
   }
   deleteBook(id: number) {
     this.books = this.books.filter(book => book.id !== id);
