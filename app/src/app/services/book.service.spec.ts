@@ -3,8 +3,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { BookService } from './book.service';
-import { ApiService } from './api.service';
-import { ApiMockService } from './api-mock.service';
+import { ApiService } from './api/api.service';
+import { ApiMockService } from './api/api-mock.service';
 
 describe('BookService', () => {
   beforeEach(() => {

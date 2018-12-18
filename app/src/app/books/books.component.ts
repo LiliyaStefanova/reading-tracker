@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../book.service';
+import { BookService } from '../services/book.service';
 import { Book } from '../book';
 import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators } from '@angular/forms';

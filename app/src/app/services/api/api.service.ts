@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { environment} from '../environments/environment';
+import { environment} from '../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/internal/operators';
 import { Observable, of } from 'rxjs';
-import {Book} from './book';
+import {Book} from '../../book';
 
 const URL = environment.apiUrl;
 

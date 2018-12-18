@@ -89,15 +89,6 @@
       "notes": "Space and time for dummies",
       "star": false,
       "read": true
-    },
-    {
-      "title": "The 80 20 principle",
-      "author": "Richard Koch ",
-      "genre": "Self-help",
-      "notes": "",
-      "star": true,
-      "read": true,
-      "id": 20
     }
   ]
 }

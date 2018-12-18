@@ -2,9 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookDetailsComponent } from './book-details.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {BookService} from '../book.service';
-import {ApiService} from '../api.service';
-import {ApiMockService} from '../api-mock.service';
+import {BookService} from '../services/book.service';
+import {ApiService} from '../services/api/api.service';
+import {ApiMockService} from '../services/api/api-mock.service';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
