@@ -1,6 +1,5 @@
 package com.elster.booktracker.resources.definitions;
 
-import freemarker.template.SimpleDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,5 +33,4 @@ public class Book {
     @NotNull
     private boolean favourite;
 
-    private SimpleDate dateRead;
 }

@@ -16,12 +16,19 @@ import java.util.Optional;
 public interface BookDao {
 
     @SqlUpdate("INSERT INTO books (id, author_id, category_id, genre, note, status, favourite, title) " +
-                "values(nextval('books_id_seq'), ?, ?, ?, ?, ?, ?, ?)")
+                "values(nextval('books_id_seq'), " +
+                "(SELECT id from author WHERE name = :author)," +
+                "(SELECT id from category where name = :category)," +
+                "?, ?, ?, ?, ?, ?)")
     @GetGeneratedKeys("id")
-    long insert(Book book);
+    long insert(String title, String author, String category, String genre,
+                                String note, String status, boolean favourite);
+
+    @SqlUpdate("UPDATE ")
+    long update(Book book, long id);
 
     @SqlUpdate("DELETE FROM books WHERE id = :id")
-    void deleteById(@Bind("id") long id);
+    public abstract void deleteById(@Bind("id") long id);
 
     @SqlQuery("SELECT * FROM books WHERE id = :id")
     Optional<Book> findById(@Bind("id") long id);

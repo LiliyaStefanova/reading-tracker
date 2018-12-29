@@ -51,7 +51,8 @@ public class BookResource extends BaseResource {
     @Path("book")
     public Response createBook(Book book){
         //TODO handle exceptions
-        long id = this.bookDao.insert(book);
+        long id = this.bookDao.insert(book.getTitle(), book.getAuthor(), book.getCategory(),
+                book.getGenre(), book.getNotes(), book.getStatus(), book.isFavourite());
         return this.successResponse(id);
     }
 

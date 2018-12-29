@@ -1,6 +1,7 @@
 package com.elster.booktracker.dao;
 
 import com.elster.booktracker.resources.definitions.Author;
+import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
@@ -20,12 +21,13 @@ public interface AuthorDao {
     long insert(String name, String bio, String notes);
 
     @SqlQuery("SELECT * FROM author WHERE id = :id")
+    @RegisterBeanMapper(Author.class)
     Optional<Author> findAuthorById(@Bind("id") long id);
 
     @SqlQuery("SELECT name FROM author")
     List<String> getAllAuthorNames();
 
-    @SqlQuery("DELETE FROM author WHERE id = :id")
+    @SqlUpdate("DELETE FROM author WHERE id = :id")
     void deleteAuthor(@Bind("id") long id);
 
 }
