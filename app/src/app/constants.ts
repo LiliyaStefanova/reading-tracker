@@ -11,3 +11,9 @@ export const genre = [
   'Epic',
   'Other',
 ];
+
+export const status = [
+  'Not Started',
+  'In Progress',
+  'Complete'
+];

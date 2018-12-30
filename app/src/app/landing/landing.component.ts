@@ -17,7 +17,7 @@ export class LandingComponent implements OnInit {
   }
   getBooks(): void {
     this.bookService.getAllBooks()
-      .subscribe(books => this.books = books.filter(b => b.star === true));
+      .subscribe(books => this.books = books.filter(b => b.favourite === true));
   }
 
 }

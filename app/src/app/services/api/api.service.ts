@@ -18,7 +18,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
   public getAllBooks(): Observable<Book[]> {
-    const url = URL + '/books';
+    const url = `${URL}/books/all`;
     return this.http
       .get<Book[]>(url)
       .pipe(
@@ -27,7 +27,7 @@ export class ApiService {
       );
   }
   public getBookById(id: number): Observable<Book> {
-    const url = `${URL}/books/${id}`;
+    const url = `${URL}/books/book/${id}`;
     return this.http
       .get(url)
       .pipe(
@@ -37,7 +37,7 @@ export class ApiService {
       );
   }
   public addBook(book: Book): Observable<Book> {
-    const url = `${URL}/books`;
+    const url = `${URL}/books/book`;
     return this.http
       .post(url, book, httpOptions)
       .pipe(
@@ -55,7 +55,7 @@ export class ApiService {
       );
   }
   public deleteBookById(id: Number): Observable<any> {
-    const url = `${URL}/books/${id}`;
+    const url = `${URL}/books/book/${id}`;
     return this.http
       .delete<Book>(url, httpOptions)
       .pipe(

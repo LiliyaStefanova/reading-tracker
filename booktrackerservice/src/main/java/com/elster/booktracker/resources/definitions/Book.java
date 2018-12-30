@@ -17,7 +17,10 @@ public class Book {
     private String title;
 
     @NotNull
-    private String author;
+    private long author;
+
+    @NotNull
+    private long category;
 
     @NotNull
     private String genre;
@@ -25,12 +28,8 @@ public class Book {
     private String notes;
 
     @NotNull
-    private String category;
-
-    @NotNull
     private String status;
 
-    @NotNull
     private boolean favourite;
 
 }

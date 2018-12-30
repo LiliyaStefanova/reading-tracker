@@ -3,6 +3,7 @@ import { Book } from '../book';
 import { Observable} from 'rxjs';
 import { MessageService } from './message.service';
 import { ApiService } from './api/api.service';
+import { status } from '../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +25,12 @@ export class BookService {
   }
   // TODO ability to set book read status by clicking on the tick icon instead of going to the form
   setBookReadStatus(book: Book) {
-    book.read = !book.read;
     // TODO take a deep copy of this object to prevent it from being mutated
     return this.apiService.updateBook(book);
   }
   // TODO ability to mark book as favourite by clicking on the star icon instead of going to the form
   setBookFavouriteStatus(book: Book) {
-    book.star = !book.star;
+    book.favourite = !book.favourite;
     return this.apiService.updateBook(book);
   }
   deleteBook(id: number): Observable<any> {

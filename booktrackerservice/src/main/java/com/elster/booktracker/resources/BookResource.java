@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +40,22 @@ public class BookResource extends BaseResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("book/search")
+    public Response findBook(@QueryParam("title") String title){
+        //TODO title encoding
+        List<Book> books = new ArrayList<>();
+        if(title == null || title.isEmpty()){
+            books = this.bookDao.searchByTitle(title);
+        }
+        return this.successResponse(books);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("all")
     public Response getAllBooks(){
 
-        return this.successResponse(this.bookDao.getAllBookTitles());
+        return this.successResponse(this.bookDao.getAllBooks());
     }
 
     @POST
@@ -51,8 +64,8 @@ public class BookResource extends BaseResource {
     @Path("book")
     public Response createBook(Book book){
         //TODO handle exceptions
-        long id = this.bookDao.insert(book.getTitle(), book.getAuthor(), book.getCategory(),
-                book.getGenre(), book.getNotes(), book.getStatus(), book.isFavourite());
+        long id = this.bookDao.insert(book.getAuthor(), book.getCategory(),
+                book.getGenre(), book.getNotes(), book.getStatus(), book.isFavourite(), book.getTitle());
         return this.successResponse(id);
     }
 

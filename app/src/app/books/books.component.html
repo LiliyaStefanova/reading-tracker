@@ -8,11 +8,11 @@
             {{book.title}}
             <span class="badge badge-warning badge-pill status-badge" tabindex="0"
                 data-toggle="tooltip" title="This is a favourite" >
-              <fa-icon [icon]="faStar" *ngIf="book.star" align="right"></fa-icon>
+              <fa-icon [icon]="faStar" *ngIf="book.favourite" align="right"></fa-icon>
             </span>
             <span class="badge badge-secondary badge-pill" tabindex="0"
                     data-toggle="tooltip" title="I've read this book">
-              <fa-icon [icon]="faCheck" *ngIf="book.read"></fa-icon>
+              <fa-icon [icon]="faCheck" *ngIf="book.status === 'Complete'"></fa-icon>
             </span>
           </a>
         <button type="button" class="btn btn-secondary btn-sm" title="Delete" (click)="deleteBook(book.id)">
@@ -31,6 +31,10 @@
         <label for="title">Author</label>
         <input type="text"formControlName="author" class="form-control" id="author" placeholder="Book Author">
       </div>
+      <div class="form-group">
+        <label for="title">Category</label>
+        <input type="text"formControlName="category" class="form-control" id="category" placeholder="Book Category">
+      </div>
       <label>Genre</label>
       <select formControlName="genre" class="form-control form-control">
         <option *ngFor="let g of genres">{{g}}</option>
@@ -40,13 +44,15 @@
         <textarea formControlName="notes" class="form-control" id="notes" rows="3"></textarea>
       </div>
       <div class="form-check form-check-inline">
-        <input formControlName="star" class="form-check-input" type="checkbox" id="starBook" value="star">
-        <label class="form-check-label" for="starBook">Mark Favourite</label>
+        <input formControlName="favourite" class="form-check-input" type="checkbox" id="favouriteBook" value="favourite">
+        <label class="form-check-label" for="favouriteBook">Mark Favourite</label>
       </div>
-      <div class="form-check form-check-inline">
-        <input formControlName="read" class="form-check-input" type="checkbox" id="readBook" value="star">
-        <label class="form-check-label" for="readBook">Mark Read</label>
-      </div>
+      <label>Status</label>
+      <select formControlName="status" class="form-control form-control">
+        <option>In Progress</option>
+        <option>Complete</option>
+        <option>Not Started</option>
+      </select>
     <button type="submit" [disabled]= "!addForm.valid" class="btn btn-sm btn-primary">Add</button>
     </form>
   </div>

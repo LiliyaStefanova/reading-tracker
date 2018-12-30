@@ -3,7 +3,7 @@ import { BookService } from '../services/book.service';
 import { Book } from '../book';
 import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators } from '@angular/forms';
-import { genre } from '../constants';
+import { genre, status } from '../constants';
 
 @Component({
   selector: 'app-books',
@@ -14,10 +14,11 @@ export class BooksComponent implements OnInit {
   addForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(4)]],
     author: ['', [Validators.required, Validators.minLength(2)]],
+    category: ['', [Validators.required]],
     genre: ['', [Validators.required]],
     notes: [''],
-    star: [''],
-    read: ['']
+    status: [''],
+    favourite: [''],
   });
   books: Book[];
   faStar = faStar;

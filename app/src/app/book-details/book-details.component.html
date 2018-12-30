@@ -24,6 +24,13 @@
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon6">Category</span>
+    </div>
+    <input type="text" [(ngModel)]="book.category" class="form-control" placeholder="Category" aria-label="Category"
+           aria-describedby="basic-addon6" required minlength="2">
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
       <label class="input-group-text" for="genre">Genre</label>
     </div>
     <select class="custom-select" [(ngModel)]="book.genre" id="genre">
@@ -36,16 +43,18 @@
     </div>
     <textarea [(ngModel)]="book.notes" class="form-control" aria-label="Notes" placeholder="Notes"></textarea>
   </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="genre">Category</label>
+    </div>
+    <select class="custom-select" [(ngModel)]="book.status" id="status">
+      <option *ngFor="let s of status">{{s}}</option>
+    </select>
+  </div>
   <div class="form-group">
     <div class="form-check">
-      <input class="form-check-input" [(ngModel)]="book.read" type="checkbox" id="readBook">
-      <label class="form-check-label" for="readBook">
-        Mark as read
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" [(ngModel)]="book.star" type="checkbox" id="starBook" #bookStar>
-      <label class="form-check-label" for="starBook">
+      <input class="form-check-input" [(ngModel)]="book.favourite" type="checkbox" id="favouriteBook" #bookStar>
+      <label class="form-check-label" for="favouriteBook">
         Mark as favourite
       </label>
     </div>
