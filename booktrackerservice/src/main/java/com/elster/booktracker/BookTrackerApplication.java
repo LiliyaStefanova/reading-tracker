@@ -1,6 +1,7 @@
 package com.elster.booktracker;
 
 import io.dropwizard.Application;
+import io.dropwizard.jdbi3.bundles.JdbiExceptionsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
@@ -31,7 +32,6 @@ public class BookTrackerApplication extends Application<BookTrackerConfiguration
                 return config.getSwaggerBundleConfiguration();
             }
         });
-
 
     }
 

@@ -1,7 +1,9 @@
 package com.elster.booktracker.resources;
 
 import com.elster.booktracker.dao.BookDao;
+import com.elster.booktracker.exceptions.BookTrackerException;
 import com.elster.booktracker.resources.definitions.Book;
+import com.elster.booktracker.resources.definitions.BookEnriched;
 import com.elster.booktracker.utils.rest.BaseResource;
 import com.google.inject.Inject;
 import io.swagger.annotations.Api;
@@ -34,18 +36,22 @@ public class BookResource extends BaseResource {
     @Path("book/{id}")
     public Response getBook(@PathParam("id") long id){
 
-        Optional<Book> book = this.bookDao.findById(id);
+        Optional<BookEnriched> book = this.bookDao.findById(id);
         return this.optionalResponse(book);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("book/search")
-    public Response findBook(@QueryParam("title") String title){
+    public Response findBook(@QueryParam("title") String title, @QueryParam("author") String author){
         //TODO title encoding
         List<Book> books = new ArrayList<>();
-        if(title == null || title.isEmpty()){
-            books = this.bookDao.searchByTitle(title);
+        if(title == null){
+            books = this.bookDao.searchByTitle("", author);
+        } else if(author == null){
+            books = this.bookDao.searchByTitle(title, "");
+        } else{
+            books = this.bookDao.searchByTitle(title, author);
         }
         return this.successResponse(books);
     }
@@ -67,6 +73,16 @@ public class BookResource extends BaseResource {
         long id = this.bookDao.insert(book.getAuthor(), book.getCategory(),
                 book.getGenre(), book.getNotes(), book.getStatus(), book.isFavourite(), book.getTitle());
         return this.successResponse(id);
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("book/{id}")
+    public Response updateBook(@PathParam("id") long id, Book book) throws BookTrackerException{
+        long finalId = this.bookDao.updateIfExists(id, book.getAuthor(), book.getCategory(), book.getGenre(),
+                book.getNotes(), book.getStatus(), book.isFavourite(), book.getTitle());
+        return this.successResponse(finalId);
     }
 
     @DELETE
