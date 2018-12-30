@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { ApiService } from './api.service';
+import { BookApiService } from './book.api.service';
 import { HttpClient, HttpResponse} from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import { Book } from '../../book';
+import { Book } from '../../representations/book';
 
-describe('ApiService', () => {
+describe('BookApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClient, HttpClientTestingModule, HttpTestingController],
       providers: [
-        ApiService,
+        BookApiService,
         HttpTestingController
       ]
     });
@@ -17,13 +17,13 @@ describe('ApiService', () => {
 
 });
 
-it('should inject', inject([HttpTestingController, ApiService],
-  (httpMock: HttpTestingController, service: ApiService) => {
+it('should inject', inject([HttpTestingController, BookApiService],
+  (httpMock: HttpTestingController, service: BookApiService) => {
   expect(service).toBeTruthy();
 }));
 
-it('should work', inject([HttpTestingController, ApiService],
-  (httpMock: HttpTestingController, service: ApiService) => {
+it('should work', inject([HttpTestingController, BookApiService],
+  (httpMock: HttpTestingController, service: BookApiService) => {
     service.getAllBooks().subscribe(result => {
         expect(result).toBe([]);
     });

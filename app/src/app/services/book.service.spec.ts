@@ -3,7 +3,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { BookService } from './book.service';
-import { ApiService } from './api/api.service';
+import { BookApiService } from './api/book.api.service';
 import { ApiMockService } from './api/api-mock.service';
 
 describe('BookService', () => {
@@ -12,7 +12,7 @@ describe('BookService', () => {
       providers: [
         BookService,
         {
-          provide: ApiService,
+          provide: BookApiService,
           useClass: ApiMockService
         }
       ]

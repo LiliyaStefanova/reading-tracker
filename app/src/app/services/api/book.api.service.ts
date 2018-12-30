@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
-import { environment} from '../../../environments/environment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/internal/operators';
-import { Observable, of } from 'rxjs';
-import {Book} from '../../book';
-
-const URL = environment.apiUrl;
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}),
-};
+import { Observable } from 'rxjs';
+import {Book} from '../../representations/book';
+import {BaseApi, URL, httpOptions} from './api';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class BookApiService extends BaseApi {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
+
   public getAllBooks(): Observable<Book[]> {
     const url = `${URL}/books/all`;
     return this.http
@@ -62,12 +59,5 @@ export class ApiService {
         tap(_ => console.log(`deleted book with id: ${id}`)),
         catchError(this.handleErrors<any>('deleteBookById'))
       );
-  }
-  private handleErrors<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed with error message: ${error.message}`);
-      return of(result as T);
-    };
   }
 }

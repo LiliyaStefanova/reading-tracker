@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../book';
+import { Book } from '../representations/book';
 import { Observable} from 'rxjs';
 import { MessageService } from './message.service';
-import { ApiService } from './api/api.service';
-import { status } from '../constants';
+import { BookApiService } from './api/book.api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ import { status } from '../constants';
 export class BookService {
   books: Book [] = [];
 
-  constructor(private messageService: MessageService, private apiService: ApiService) { }
+  constructor(private messageService: MessageService, private apiService: BookApiService) { }
   addBook(book: Book): Observable<Book> {
     return this.apiService.addBook(book);
   }
