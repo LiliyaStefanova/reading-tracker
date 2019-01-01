@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BooksComponent } from './books.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {BookService} from '../services/book.service';
-import {ApiService} from '../services/api/api.service';
+import {BookApiService} from '../services/api/book.api.service';
 import {ApiMockService} from '../services/api/api-mock.service';
 import { FormBuilder } from '@angular/forms';
 
@@ -19,7 +19,7 @@ describe('BooksComponent', () => {
       ],
       providers: [
         BookService,
-        {provide: ApiService,
+        {provide: BookApiService,
          useClass: ApiMockService},
         FormBuilder
       ]

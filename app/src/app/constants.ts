@@ -12,8 +12,8 @@ export const genre = [
   'Other',
 ];
 
-export const status = [
-  'Not Started',
-  'In Progress',
-  'Complete'
-];
+export const status = {
+  NOT_STARTED: 'Not Started',
+  IN_PROGRESS: 'In Progress',
+  COMPLETE: 'Complete'
+};
