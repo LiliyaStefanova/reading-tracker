@@ -19,4 +19,8 @@ public class Author {
     private String bio;
 
     private String notes;
+
+    public Author(String name, String bio, String notes){
+        this(0L, name, bio, notes);
+    }
 }
