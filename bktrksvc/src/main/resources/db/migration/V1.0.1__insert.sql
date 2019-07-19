@@ -1,0 +1,13 @@
+INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-projects', 'spring-boot');
+INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-io', 'initializr');
+INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-io', 'sagan');
+
+INSERT INTO READING_ENTRY(TITLE, TYPE, MEDIUM, LANGUAGE, PUBLISHER, EDITION) VALUES ('Lord of the Rings', 'BOOK', 'LETTERS', 'English', 'Oxford Press', '');
+INSERT INTO READING_ENTRY(TITLE, TYPE, MEDIUM, LANGUAGE, PUBLISHER, EDITION) VALUES ('Mind Performance Hacks', 'BOOK', 'LETTERS', 'English', 'OReilly', '2');
+INSERT INTO READING_ENTRY(TITLE, TYPE, MEDIUM, LANGUAGE, PUBLISHER, EDITION) VALUES ('Cryptography for dummies', 'PAPER', 'LETTERS', 'German', 'Deutsch Publishing', '');
+INSERT INTO READING_ENTRY(TITLE, TYPE, MEDIUM, LANGUAGE, PUBLISHER, EDITION) VALUES ('Histories', 'BOOK', 'AUDIO', 'English', 'Cambridge', '');
+
+INSERT INTO AUTHOR(NAME, BIO, WEBSITE, NOTES) VALUES ('J.R.R Tolkien', '', '', '');
+INSERT INTO AUTHOR(NAME, BIO, WEBSITE, NOTES) VALUES ('Ron Hale-Evans', 'hacker', '', '');
+INSERT INTO AUTHOR(NAME, BIO, WEBSITE, NOTES) VALUES ('White Hat', 'someone', '', '');
+INSERT INTO AUTHOR(NAME, BIO, WEBSITE, NOTES) VALUES ('Herodotus', 'ancient historian', '', 'hilarious');
