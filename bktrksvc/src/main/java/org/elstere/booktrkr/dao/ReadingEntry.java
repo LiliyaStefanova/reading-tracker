@@ -16,6 +16,10 @@ public class ReadingEntry implements Serializable {
     @OneToMany(mappedBy = "readingEntry", cascade = CascadeType.ALL)
     private Set<Authorship> authors;
 
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name="GENRE_ID")
+    private Genre genre;
+
     @Column(unique = true)
     private String title;
 
@@ -54,6 +58,14 @@ public class ReadingEntry implements Serializable {
 
     public void setAuthors(Set<Authorship> authors){
         this.authors = authors;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public String getTitle() {
