@@ -25,15 +25,23 @@
     <form [formGroup] = "addForm" (ngSubmit) ="addBook(addForm.value)">
       <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" formControlName="title" class="form-control" id="title" placeholder="Book Title">
+        <input type="text" formControlName="title" class="form-control" id="title" placeholder="Title">
       </div>
       <div class="form-group">
-        <label for="title">Author</label>
-        <input type="text"formControlName="author" class="form-control" id="author" placeholder="Book Author">
+        <label for="authors">Authors</label>
+        <input type="text"formControlName="authors" class="form-control" id="authors" placeholder="Authors">
       </div>
       <div class="form-group">
-        <label for="title">Category</label>
-        <input type="text"formControlName="category" class="form-control" id="category" placeholder="Book Category">
+        <label for="type">Type</label>
+        <input type="text"formControlName="type" class="form-control" id="type" placeholder="Reading Type">
+      </div>
+      <div class="form-group">
+        <label for="medium">Medium</label>
+        <input type="text"formControlName="medium" class="form-control" id="medium" placeholder="Medium">
+      </div>
+      <div class="form-group">
+        <label for="language">Language</label>
+        <input type="text"formControlName="language" class="form-control" id="language" placeholder="Language">
       </div>
       <label>Genre</label>
       <select formControlName="genre" class="form-control form-control">
