@@ -11,4 +11,5 @@ public interface GenreRepository extends PagingAndSortingRepository<Genre, Long>
     Genre findByNameContains(String searchTerm);
 
     List<Genre> findAll();
+
 }

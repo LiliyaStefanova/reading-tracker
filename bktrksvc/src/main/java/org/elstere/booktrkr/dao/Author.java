@@ -1,11 +1,15 @@
 package org.elstere.booktrkr.dao;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Data
 public class Author implements Serializable {
 
     @Id
@@ -13,6 +17,7 @@ public class Author implements Serializable {
     private long id;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Authorship> authorship = new HashSet<>();
 
     private String name;
@@ -23,55 +28,13 @@ public class Author implements Serializable {
 
     private String notes;
 
+    public Author() {
+    }
+
     public Author(String name, String bio, String website, String notes) {
         this.name = name;
         this.bio = bio;
         this.website = website;
-        this.notes = notes;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-
-    public Set<Authorship> getAuthorship() {
-        return authorship;
-    }
-
-    public void setAuthorship(Set<Authorship> authorship) {
-        this.authorship = authorship;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
         this.notes = notes;
     }
 

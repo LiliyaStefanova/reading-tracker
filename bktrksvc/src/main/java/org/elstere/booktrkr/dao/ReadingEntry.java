@@ -1,12 +1,19 @@
 package org.elstere.booktrkr.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
+@Data
+@Slf4j
 public class ReadingEntry implements Serializable {
 
     @Id
@@ -14,11 +21,18 @@ public class ReadingEntry implements Serializable {
     private long id;
 
     @OneToMany(mappedBy = "readingEntry", cascade = CascadeType.ALL)
-    private Set<Authorship> authors;
+    @JsonManagedReference
+    private Set<Authorship> authorships;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="GENRE_ID")
+    @ManyToOne
+    @JoinColumn(name="genre_id")
+    @JsonBackReference
+    @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
     private Genre genre;
+
+    @OneToMany(mappedBy = "readingEntry", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Collection<ReadingRecord> recordTrail = new ArrayList<>();
 
     @Column(unique = true)
     private String title;
@@ -35,7 +49,11 @@ public class ReadingEntry implements Serializable {
 
     private String edition;
 
-    public ReadingEntry(String title, String type, String medium, String language, String publisher, String edition, Authorship... authors) {
+    public ReadingEntry() {
+    }
+
+    public ReadingEntry(String title, String type, String medium, String language,
+                        String publisher, String edition, Genre genre, Authorship... authors) {
         this.title = title;
         this.type = type;
         this.medium = medium;
@@ -45,75 +63,10 @@ public class ReadingEntry implements Serializable {
         for(Authorship authorship: authors){
             authorship.setReadingEntry(this);
         }
-        this.authors = Arrays.stream(authors).collect(Collectors.toSet());
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public Set<Authorship> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(Set<Authorship> authors){
-        this.authors = authors;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
+        this.authorships = Arrays.stream(authors).collect(Collectors.toSet());
         this.genre = genre;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getMedium() {
-        return medium;
-    }
-
-    public void setMedium(String medium) {
-        this.medium = medium;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public String getEdition() {
-        return edition;
-    }
-
-    public void setEdition(String edition) {
-        this.edition = edition;
+        //brand new reading entries have one ReadingRecord
+        //FIXME these will need to be compared by insertion date
     }
 
     @Override
@@ -126,7 +79,8 @@ public class ReadingEntry implements Serializable {
                 ", language='" + language + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", edition='" + edition + '\'' +
-                ", authors: '" + authors+'\''+
+                ", authorships: '" + authorships +'\''+
+                ", genre: '"+ genre + '\''+
                 '}';
     }
 }

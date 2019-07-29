@@ -1,5 +1,8 @@
 package org.elstere.booktrkr.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -8,35 +11,25 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Data
 public class Authorship implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name="reading_entry_id")
+    @JsonBackReference
     private ReadingEntry readingEntry;
 
     @Id
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name="author_id")
+    @JsonBackReference
     private Author author;
 
+    public Authorship() {
+    }
+
     public Authorship(Author author) {
-        this.author = author;
-    }
-
-    public ReadingEntry getReadingEntry() {
-        return readingEntry;
-    }
-
-    public void setReadingEntry(ReadingEntry readingEntry) {
-        this.readingEntry = readingEntry;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
         this.author = author;
     }
 
