@@ -1,12 +1,13 @@
 export class Book {
   id: number;
   title: string;
-  author: string;
-  category: string;
+  authors: string;
   genre: string;
-  notes: string;
-  status: string;
-  favourite: boolean;
+  recordTrail: [];
+  type: string;
+  medium: string;
+  language: string;
+  publisher: string;
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }

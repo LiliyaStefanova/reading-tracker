@@ -17,17 +17,28 @@
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon2">Author</span>
+      <span class="input-group-text" id="basic-addon2">Authors</span>
     </div>
-    <input type="text" [(ngModel)]="book.author" class="form-control" placeholder="Author" aria-label="Author"
+    <input type="text" [(ngModel)]="book.authors" class="form-control" placeholder="Authors" aria-label="Author"
            aria-describedby="basic-addon2" required minlength="2">
   </div>
-  <div class="input-group mb-3">
+  <div class="form-group">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon6">Category</span>
+      <span class="input-group-text" id="basic-addon3">Type</span>
+      <input type="text" [(ngModel)]="book.type" class="form-control" placeholder="Reading Type">
     </div>
-    <input type="text" [(ngModel)]="book.category" class="form-control" placeholder="Category" aria-label="Category"
-           aria-describedby="basic-addon6" required minlength="2">
+  </div>
+  <div class="form-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon4">Medium</span>
+      <input type="text" [(ngModel)]="book.medium" class="form-control" placeholder="Medium">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon6">Language</span>
+      <input type="text" [(ngModel)]="book.language" class="form-control" id="language" placeholder="Language">
+    </div>
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">

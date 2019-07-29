@@ -15,7 +15,7 @@ export class BookApiService extends BaseApi {
   }
 
   public getAllBooks(): Observable<Book[]> {
-    const url = `${URL}/books/all`;
+    const url = `${URL}/readingEntry/all`;
     return this.http
       .get<Book[]>(url)
       .pipe(
@@ -24,7 +24,7 @@ export class BookApiService extends BaseApi {
       );
   }
   public getBookById(id: number): Observable<Book> {
-    const url = `${URL}/books/book/${id}`;
+    const url = `${URL}/readingEntry/${id}`;
     return this.http
       .get(url)
       .pipe(
@@ -34,7 +34,7 @@ export class BookApiService extends BaseApi {
       );
   }
   public addBook(book: Book): Observable<Book> {
-    const url = `${URL}/books/book`;
+    const url = `${URL}/readingEntry`;
     return this.http
       .post(url, book, httpOptions)
       .pipe(
@@ -42,22 +42,24 @@ export class BookApiService extends BaseApi {
         catchError(this.handleErrors<Book>('addBook'))
       );
   }
-  public updateBook(book: Book): Observable<Book> {
-    const url = `${URL}/books/${book.id}`;
-    return this.http
-      .put(url, book, httpOptions)
-      .pipe(
-        tap(_ => console.log(`updated book id=${book.id}`)),
-        catchError(this.handleErrors<any>(`updateBook`))
-      );
-  }
-  public deleteBookById(id: Number): Observable<any> {
-    const url = `${URL}/books/book/${id}`;
-    return this.http
-      .delete<Book>(url, httpOptions)
-      .pipe(
-        tap(_ => console.log(`deleted book with id: ${id}`)),
-        catchError(this.handleErrors<any>('deleteBookById'))
-      );
-  }
+  // // TODO server end point here
+  // public updateBook(book: Book): Observable<Book> {
+  //   const url = `${URL}/readingEntry/${book.id}`;
+  //   return this.http
+  //     .put(url, book, httpOptions)
+  //     .pipe(
+  //       tap(_ => console.log(`updated book id=${book.id}`)),
+  //       catchError(this.handleErrors<any>(`updateBook`))
+  //     );
+  // }
+  // // TODO server end point here
+  // public deleteBookById(id: Number): Observable<any> {
+  //   const url = `${URL}/books/book/${id}`;
+  //   return this.http
+  //     .delete<Book>(url, httpOptions)
+  //     .pipe(
+  //       tap(_ => console.log(`deleted book with id: ${id}`)),
+  //       catchError(this.handleErrors<any>('deleteBookById'))
+  //     );
+  // }
 }

@@ -19,7 +19,7 @@ export class AuthorsApiService extends BaseApi {
     return this.http
       .get<Author[]>(url)
       .pipe(
-        tap(_ => console.log('got authors')),
+        tap(_ => console.log('got authorships')),
         catchError(this.handleErrors<Author[]>('getAllAuthors', []))
       );
   }

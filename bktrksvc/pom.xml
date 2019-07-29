@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>booktrkr</name>
-    <description>Book Tracker  Service</description>
+    <description>Book Tracker Service</description>
 
     <properties>
         <java.version>11</java.version>

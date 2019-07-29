@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {MessageService} from './message.service';
 import {Observable} from 'rxjs/index';
 import { AuthorsApiService } from './api/authors.api.service';
-import { Author } from '../../representations/author';
+import { Author } from '../representations/author';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +15,16 @@ export class AuthorsService {
     return this.apiService.addAuthor(author);
   }
   updateAuthor(author: Author): Observable<Author> {
-    this.apiService.updateAuthor(author);
+    return this.apiService.updateAuthor(author);
   }
   deleteAuthor(id: number): Observable<any> {
-    this.apiService.deleteAuthor(id);
+    return this.apiService.deleteAuthor(id);
   }
   getAuthors(): Observable<Author[]> {
     this.messageService.add(`Fetched all authors`);
-    this.apiService.getAllAuthors();
+    return this.apiService.getAllAuthors();
   }
   getAuthor(id: number): Observable<Author> {
-    this.apiService.getAuthor(id);
+    return this.apiService.getAuthor(id);
   }
 }

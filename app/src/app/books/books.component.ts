@@ -14,7 +14,9 @@ export class BooksComponent implements OnInit {
   addForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(4)]],
     author: ['', [Validators.required, Validators.minLength(2)]],
-    category: ['', [Validators.required]],
+    type: ['', [Validators.required]],
+    medium: ['', [Validators.required]],
+    language: [''],
     genre: ['', [Validators.required]],
     notes: [''],
     status: [''],
