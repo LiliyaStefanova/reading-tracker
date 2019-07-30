@@ -2,48 +2,36 @@ package org.elstere.booktrkr.dao;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Objects;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Authorship implements Serializable {
+@NoArgsConstructor
+public class Authorship extends EntityWithUUID implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name="reading_entry_id")
+    @JoinColumn(foreignKey=@ForeignKey(name = "fk_reading_entry"))
     @JsonBackReference
     private ReadingEntry readingEntry;
 
     @Id
     @ManyToOne
-    @JoinColumn(name="author_id")
+    @JoinColumn(foreignKey=@ForeignKey(name = "fk_author"))
     @JsonBackReference
     private Author author;
 
-    public Authorship() {
-    }
+    private Timestamp created_ts;
 
     public Authorship(Author author) {
         this.author = author;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Authorship that = (Authorship) o;
-        return Objects.equals(readingEntry, that.readingEntry) &&
-                Objects.equals(author, that.author);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(readingEntry.getTitle(), author.getName());
-    }
 }

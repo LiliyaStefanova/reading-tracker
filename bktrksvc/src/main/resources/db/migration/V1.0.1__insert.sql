@@ -1,6 +1,6 @@
-INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-projects', 'spring-boot');
-INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-io', 'initializr');
-INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-io', 'sagan');
+-- INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-projects', 'spring-boot');
+-- INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-io', 'initializr');
+-- INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-io', 'sagan');
 
 -- INSERT INTO GENRE(NAME, DESCRIPTION) VALUES ('Fantasy', 'A genre of speculative fiction set in a fictional universe');
 -- INSERT INTO GENRE(NAME, DESCRIPTION) VALUES ('Self-Help', 'Instruct readers on solving personal problems');
@@ -16,5 +16,5 @@ INSERT INTO GITHUB_PROJECT(ORG_NAME, REPO_NAME) VALUES ('spring-io', 'sagan');
 -- INSERT INTO AUTHOR(NAME, BIO, WEBSITE, NOTES) VALUES ('Ron Hale-Evans', 'hacker', '', '');
 -- INSERT INTO AUTHOR(NAME, BIO, WEBSITE, NOTES) VALUES ('White Hat', 'someone', '', '');
 -- INSERT INTO AUTHOR(NAME, BIO, WEBSITE, NOTES) VALUES ('Herodotus', 'ancient historian', '', 'hilarious');
-
+--
 

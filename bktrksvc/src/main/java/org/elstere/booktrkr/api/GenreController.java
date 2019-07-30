@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -31,7 +32,7 @@ public class GenreController {
     @GetMapping("/genre/{id}")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public ResponseEntity fetchGenreById(@PathVariable long id){
+    public ResponseEntity fetchGenreById(@PathVariable UUID id){
         Optional<GenreOutbound> genreOutbound = this.service.getGenreById(id);
         if(genreOutbound.isPresent()){
             return ResponseEntity.ok(genreOutbound);
@@ -43,7 +44,7 @@ public class GenreController {
     @GetMapping("/genre/{id}/readingEntries")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public ResponseEntity fetchTitlesInGenre(@PathVariable long id){
+    public ResponseEntity fetchTitlesInGenre(@PathVariable UUID id){
         List<String> results = this.service.getAllReadingEntriesForGenre(id);
         return ResponseEntity.ok(results);
     }
@@ -54,7 +55,7 @@ public class GenreController {
     public ResponseEntity insertGenre(@RequestBody GenreInbound genre){
         log.info("GenreInbound is: {}", genre.toString());
         Optional<GenreOutbound> newGenre = this.service.insertGenre(genre);
-        long id = newGenre.map(GenreOutbound::getId).orElse(0L);
+        UUID id = newGenre.map(GenreOutbound::getId).orElse(new UUID(0, 0));
         return ResponseEntity.ok(id);
     }
 }

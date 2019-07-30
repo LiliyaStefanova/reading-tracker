@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Slf4j
 @SpringBootApplication
 @RequiredArgsConstructor
+@EnableTransactionManagement
 @EnableConfigurationProperties(GithubProperties.class)
 public class BooktrkrApplication implements CommandLineRunner {
 

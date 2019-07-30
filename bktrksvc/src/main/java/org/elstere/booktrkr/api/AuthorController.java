@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class AuthorController {
@@ -26,19 +27,19 @@ public class AuthorController {
     @GetMapping("/author/{id}")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public Author fetchAuthorById(@PathVariable long id){
-        return this.authorRepository.findById(id);
+    public Author fetchAuthorById(@PathVariable UUID id){
+        return this.authorRepository.findById(id).get();
     }
 
     @PostMapping("/author")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public long insertAuthor(Author author){
+    public UUID insertAuthor(Author author){
         Author newAuthor = this.authorRepository.save(author);
         if(newAuthor!=null){
             return newAuthor.getId();
         } else{
-            return 0L;
+            return new UUID(0, 0);
         }
     }
 }

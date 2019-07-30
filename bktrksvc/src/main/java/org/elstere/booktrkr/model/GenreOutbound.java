@@ -5,13 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class GenreOutbound {
 
-    private long id;
+    private UUID id;
 
     @NotNull
     private String name;
@@ -19,5 +21,7 @@ public class GenreOutbound {
     private String category;
 
     private String description;
+
+    private Timestamp created_ts;
 }
 

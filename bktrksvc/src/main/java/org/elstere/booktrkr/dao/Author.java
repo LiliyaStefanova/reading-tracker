@@ -1,20 +1,23 @@
 package org.elstere.booktrkr.dao;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Author implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@NoArgsConstructor
+@AllArgsConstructor
+public class Author extends EntityWithUUID implements Serializable {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -28,20 +31,12 @@ public class Author implements Serializable {
 
     private String notes;
 
-    public Author() {
-    }
-
-    public Author(String name, String bio, String website, String notes) {
-        this.name = name;
-        this.bio = bio;
-        this.website = website;
-        this.notes = notes;
-    }
+    private Timestamp created_ts;
 
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", name='" + name + '\'' +
                 ", bio='" + bio + '\'' +
                 ", website='" + website + '\'' +
