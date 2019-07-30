@@ -4,28 +4,29 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Slf4j
-public class ReadingEntry implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@NoArgsConstructor
+public class ReadingEntry extends EntityWithUUID implements Serializable {
 
     @OneToMany(mappedBy = "readingEntry", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Authorship> authorships;
 
     @ManyToOne
-    @JoinColumn(name="genre_id")
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_genre"))
     @JsonBackReference
     @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
     private Genre genre;
@@ -41,6 +42,8 @@ public class ReadingEntry implements Serializable {
 
     private String medium;
 
+    private boolean favourite;
+
     //TODO enum or db table
     private String language;
 
@@ -49,8 +52,7 @@ public class ReadingEntry implements Serializable {
 
     private String edition;
 
-    public ReadingEntry() {
-    }
+    private Timestamp created_ts;
 
     public ReadingEntry(String title, String type, String medium, String language,
                         String publisher, String edition, Genre genre, Authorship... authors) {
@@ -72,7 +74,7 @@ public class ReadingEntry implements Serializable {
     @Override
     public String toString() {
         return "ReadingEntry{" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", title='" + title + '\'' +
                 ", type=" + type +
                 ", medium=" + medium +

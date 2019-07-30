@@ -1,15 +1,16 @@
 package org.elstere.booktrkr.api;
 
 import lombok.extern.slf4j.Slf4j;
-import org.elstere.booktrkr.dao.Genre;
 import org.elstere.booktrkr.model.GenreInbound;
 import org.elstere.booktrkr.model.GenreOutbound;
 import org.elstere.booktrkr.service.GenreService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -24,34 +25,37 @@ public class GenreController {
     @GetMapping("/genre/all")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public Set<GenreOutbound> fetchGenres(){
-        return this.service.getAllGenres();
+    public ResponseEntity fetchGenres(){
+        return ResponseEntity.ok(this.service.getAllGenres());
     }
 
     @GetMapping("/genre/{id}")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public GenreOutbound fetchGenreById(@PathVariable long id){
-        return this.service.getGenreById(id);
+    public ResponseEntity fetchGenreById(@PathVariable UUID id){
+        Optional<GenreOutbound> genreOutbound = this.service.getGenreById(id);
+        if(genreOutbound.isPresent()){
+            return ResponseEntity.ok(genreOutbound);
+        } else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/genre/{id}/readingEntries")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public List<String> fetchTitlesInGenre(@PathVariable long id){
-        return this.service.getAllReadingEntriesForGenre(id);
+    public ResponseEntity fetchTitlesInGenre(@PathVariable UUID id){
+        List<String> results = this.service.getAllReadingEntriesForGenre(id);
+        return ResponseEntity.ok(results);
     }
 
     @PostMapping("/genre")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public long insertGenre(@RequestBody GenreInbound genre){
+    public ResponseEntity insertGenre(@RequestBody GenreInbound genre){
         log.info("GenreInbound is: {}", genre.toString());
-        Genre newGenre = this.service.insertGenre(genre);
-        if(newGenre!=null){
-            return newGenre.getId();
-        } else{
-            return 0L;
-        }
+        Optional<GenreOutbound> newGenre = this.service.insertGenre(genre);
+        UUID id = newGenre.map(GenreOutbound::getId).orElse(new UUID(0, 0));
+        return ResponseEntity.ok(id);
     }
 }

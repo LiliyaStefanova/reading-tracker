@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @Slf4j
@@ -31,7 +32,7 @@ public class ReadingEntryController {
     @GetMapping("/readingEntry/{id}")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public ReadingOutbound fetchReadngEntryById(@PathVariable long id){
+    public ReadingOutbound fetchReadngEntryById(@PathVariable UUID id){
         return this.service.getReadingEntryById(id);
     }
 
@@ -45,12 +46,12 @@ public class ReadingEntryController {
     @PostMapping("/readingEntry")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public long insertReadingEntry(ReadingEntry reading){
+    public UUID insertReadingEntry(ReadingEntry reading){
         ReadingEntry entry = this.service.insertEntry(reading);
         if(entry!=null){
             return entry.getId();
         } else{
-            return 0L;
+            return new UUID(0,0);
         }
     }
 }

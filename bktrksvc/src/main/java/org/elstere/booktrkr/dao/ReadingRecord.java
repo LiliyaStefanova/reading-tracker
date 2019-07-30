@@ -2,21 +2,23 @@ package org.elstere.booktrkr.dao;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class ReadingRecord {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@NoArgsConstructor
+public class ReadingRecord extends EntityWithUUID implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name="reading_entry_id")
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_reading_entry"))
     @JsonBackReference
     private ReadingEntry readingEntry;
 
@@ -34,9 +36,7 @@ public class ReadingRecord {
 
     //TODO date and time stamp for all entities
 
-
-    public ReadingRecord() {
-    }
+    private Timestamp created_ts;
 
     public ReadingRecord(String status, double percentageComplete, Date startDate, Date endDate,
                          double completionTime, String notes, ReadingEntry entry) {
@@ -49,15 +49,11 @@ public class ReadingRecord {
         this.readingEntry = entry;
     }
 
-    public long getId() {
-        return id;
-    }
-
 
     @Override
     public String toString() {
         return "ReadingRecord{" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", status='" + status + '\'' +
                 ", percentageComplete=" + percentageComplete +
                 ", startDate=" + startDate +
@@ -67,22 +63,4 @@ public class ReadingRecord {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ReadingRecord record = (ReadingRecord) o;
-        return id == record.id &&
-                Double.compare(record.percentageComplete, percentageComplete) == 0 &&
-                Double.compare(record.completionTime, completionTime) == 0 &&
-                Objects.equals(status, record.status) &&
-                Objects.equals(startDate, record.startDate) &&
-                Objects.equals(endDate, record.endDate) &&
-                Objects.equals(notes, record.notes);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, status, percentageComplete, startDate, endDate, completionTime, notes);
-    }
 }
