@@ -27,14 +27,17 @@ public class Genre implements Serializable {
 
     private String name;
 
+    private String category;
+
     private String description;
 
     public Genre(){
 
     }
 
-    public Genre(String name, String description){
+    public Genre(String name, String category, String description){
         this.name = name;
+        this.category = category;
         this.description = description;
     }
 
@@ -44,6 +47,7 @@ public class Genre implements Serializable {
                 "id=" + id +
                 ", readings =" + readingEntries.stream().map(ReadingEntry::getId).collect(Collectors.toList()) +
                 ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
