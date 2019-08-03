@@ -43,23 +43,23 @@ export class BookApiService extends BaseApi {
       );
   }
   // // TODO server end point here
-  // public updateBook(book: Book): Observable<Book> {
-  //   const url = `${URL}/readingEntry/${book.id}`;
-  //   return this.http
-  //     .put(url, book, httpOptions)
-  //     .pipe(
-  //       tap(_ => console.log(`updated book id=${book.id}`)),
-  //       catchError(this.handleErrors<any>(`updateBook`))
-  //     );
-  // }
+  public updateBook(book: Book): Observable<Book> {
+    const url = `${URL}/readingEntry/${book.id}`;
+    return this.http
+      .put(url, book, httpOptions)
+      .pipe(
+        tap(_ => console.log(`updated book id=${book.id}`)),
+        catchError(this.handleErrors<any>(`updateBook`))
+      );
+  }
   // // TODO server end point here
-  // public deleteBookById(id: Number): Observable<any> {
-  //   const url = `${URL}/books/book/${id}`;
-  //   return this.http
-  //     .delete<Book>(url, httpOptions)
-  //     .pipe(
-  //       tap(_ => console.log(`deleted book with id: ${id}`)),
-  //       catchError(this.handleErrors<any>('deleteBookById'))
-  //     );
-  // }
+  public deleteBookById(id: String): Observable<any> {
+    const url = `${URL}/readingEntry/${id}`;
+    return this.http
+      .delete<Book>(url, httpOptions)
+      .pipe(
+        tap(_ => console.log(`deleted book with id: ${id}`)),
+        catchError(this.handleErrors<any>('deleteBookById'))
+      );
+  }
 }

@@ -8,7 +8,7 @@ import {BaseApi, URL, httpOptions} from './api';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorsApiService extends BaseApi {
+export class AuthorApiService extends BaseApi {
 
   constructor(private http: HttpClient) {
     super();

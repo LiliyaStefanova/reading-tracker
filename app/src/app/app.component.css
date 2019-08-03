@@ -1,9 +1,15 @@
 .logo{
   font-size: 1.5em;
-  color: whitesmoke;
+  color: mintcream;
+  vertical-align: bottom;
 }
 
-.nav{
-  font-style: normal;
+.menu-item{
+  font-family: "Courier New", Courier, monospace;
+  background-color: mintcream;
+  letter-spacing: 2px;
   font-weight: bold;
+  vertical-align: bottom;
+  margin: 5px 5px 5px 5px;
 }
+

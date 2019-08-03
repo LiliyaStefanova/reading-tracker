@@ -1,11 +1,15 @@
 <div class="container-fluid">
   <div *ngIf="messageService.messages.length">
-    <div class="alert alert-primary fade show alert-container" role="alert"
+    <div class="alert alert-primary alert-dismissible fade show alert-container" role="alert"
          *ngFor="let message of messageService.messages">{{message}}
-    </div>
-      <button (click)="messageService.dismiss()"
-              type="button" class="btn-sm btn-secondary close" aria-label="Close">
-        <span aria-hidden="true">Clear All</span>
+        <button (click)="messageService.dismiss()"
+                type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
       </button>
+    </div>
+    <button (click)="messageService.dismiss()"
+            type="button" class="btn-sm btn-secondary close" aria-label="Close">
+      <span aria-hidden="true">Clear All</span>
+    </button>
     </div>
   </div>

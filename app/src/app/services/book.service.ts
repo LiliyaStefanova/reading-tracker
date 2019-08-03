@@ -32,7 +32,7 @@ export class BookService {
     book.favourite = !book.favourite;
     return this.apiService.updateBook(book);
   }
-  deleteBook(id: number): Observable<any> {
+  deleteBook(id: string): Observable<any> {
     return this.apiService.deleteBookById(id);
   }
   updateBook(book: Book): Observable<Book> {

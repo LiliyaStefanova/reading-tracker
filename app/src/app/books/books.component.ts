@@ -47,7 +47,7 @@ export class BooksComponent implements OnInit {
       });
     this.addForm.reset();
   }
-  deleteBook(id: number) {
+  deleteBook(id: string) {
     this.books = this.books.filter(book => book.id !== id);
     this.bookService.deleteBook(id)
       .subscribe();
