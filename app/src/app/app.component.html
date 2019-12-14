@@ -1,12 +1,26 @@
 <title>{{title}}</title>
-<nav class="navbar navbar-dark bg-primary">
-    <a class="navbar-brand nav" routerLink="/landing">Home </a>
-    <ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-light bg-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link nav" routerLink="/landing"><span class="menu-item">DASHBOARD</span></a>
+        </li>
+    </ul>
+    <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link nav" routerLink="/books">Books <span class="sr-only">Books</span></a>
+        <a class="nav-link nav" routerLink="/books"><span class="menu-item">READING LIST</span></a>
       </li>
     </ul>
-  <fa-icon [icon]="faBookReader" class="logo"></fa-icon>
+    <ul class="navbar-nav">
+        <li class="nav-item active" style="color: mintcream;">
+            <a class="nav-link nav" routerLink="/genres"><span class="menu-item">SETUP</span></a>
+        </li>
+    </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item active" style="color: mintcream;">
+            <a class="nav-link nav" routerLink="/about"><span class="menu-item">ABOUT</span></a>
+        </li>
+    </ul>
+  <fa-icon [icon]="faUser" class="logo"></fa-icon>
 </nav>
 <router-outlet></router-outlet>
 <app-notification></app-notification>

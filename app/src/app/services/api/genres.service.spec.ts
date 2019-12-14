@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CategoriesService } from './categories.service';
+import { GenresApiService } from './genres.api.service';
 
 describe('CategoriesService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CategoriesService = TestBed.get(CategoriesService);
+    const service: GenresApiService = TestBed.get(GenresApiService);
     expect(service).toBeTruthy();
   });
 });

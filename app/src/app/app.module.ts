@@ -8,9 +8,10 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingComponent } from './landing/landing.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GenresComponent } from './genres/genres.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BookDetailsComponent,
     NotificationComponent,
     LandingComponent,
+    GenresComponent,
   ],
   imports: [
     BrowserModule,

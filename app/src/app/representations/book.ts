@@ -1,9 +1,10 @@
 export class Book {
-  id: number;
+  id: string;
   title: string;
   authors: string;
   genre: string;
   recordTrail: [];
+  favourite: boolean;
   type: string;
   medium: string;
   language: string;

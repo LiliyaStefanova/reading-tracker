@@ -1,0 +1,28 @@
+<div class="container-fluid genre-container" style="border: blanchedalmond">
+    <div class="row">
+        <div class="col-sm-2">Name</div>
+        <div class="col-sm-1">Category</div>
+        <div class="col-sm-6">Description</div>
+        <div class="col-sm-1">Actions</div>
+    </div>
+    <div class="row justify-content-md-left" *ngFor="let genre of genres">
+        <div class="col-sm-2">
+            {{genre.name}}
+        </div>
+        <div class="col-sm-1">
+            {{genre.category}}
+        </div>
+        <div class="col-sm-6">
+            {{genre.description}}
+        </div>
+        <div class="col-sm-1">
+              <span title="Edit" (click)="updateGenre(genre.id)">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </span>
+            <span title="Delete" (click)="deleteGenre(genre.id)">
+              <fa-icon [icon]="faMinusSquare"></fa-icon>
+            </span>
+
+        </div>
+    </div>
+</div>
