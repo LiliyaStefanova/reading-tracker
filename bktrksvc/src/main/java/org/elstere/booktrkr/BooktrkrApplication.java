@@ -17,13 +17,10 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @EnableTransactionManagement
 @EnableConfigurationProperties(GithubProperties.class)
-public class BooktrkrApplication implements CommandLineRunner {
+public class BooktrkrApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BooktrkrApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args){
-	}
 }

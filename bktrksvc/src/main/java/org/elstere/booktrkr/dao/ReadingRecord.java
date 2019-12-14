@@ -34,8 +34,6 @@ public class ReadingRecord extends EntityWithUUID implements Serializable {
 
     private String notes;
 
-    //TODO date and time stamp for all entities
-
     private Timestamp created_ts;
 
     public ReadingRecord(String status, double percentageComplete, Date startDate, Date endDate,

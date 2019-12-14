@@ -1,4 +1,4 @@
-package org.elstere.booktrkr.model;
+package org.elstere.booktrkr.api.entities.outbound;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
