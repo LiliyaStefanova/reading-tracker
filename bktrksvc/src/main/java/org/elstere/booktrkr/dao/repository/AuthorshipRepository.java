@@ -1,5 +1,6 @@
-package org.elstere.booktrkr.dao;
+package org.elstere.booktrkr.dao.repository;
 
+import org.elstere.booktrkr.dao.Authorship;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

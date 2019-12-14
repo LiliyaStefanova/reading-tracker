@@ -1,11 +1,10 @@
-package org.elstere.booktrkr.api;
+package org.elstere.booktrkr.api.controllers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.elstere.booktrkr.model.GenreInbound;
-import org.elstere.booktrkr.model.GenreOutbound;
+import org.elstere.booktrkr.api.entities.inbound.GenreInbound;
+import org.elstere.booktrkr.api.entities.outbound.GenreOutbound;
 import org.elstere.booktrkr.service.GenreService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
-@Controller
+@RestController
 public class GenreController {
 
     private final GenreService service;

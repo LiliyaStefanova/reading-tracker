@@ -1,7 +1,7 @@
 package org.elstere.booktrkr.github;
 
 import org.elstere.booktrkr.dao.GithubProject;
-import org.elstere.booktrkr.dao.GithubProjectRepository;
+import org.elstere.booktrkr.dao.repository.GithubProjectRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

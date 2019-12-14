@@ -1,4 +1,4 @@
-package org.elstere.booktrkr.model;
+package org.elstere.booktrkr.api.entities.common;
 
 public enum ReadingType {
 

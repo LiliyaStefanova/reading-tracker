@@ -1,12 +1,12 @@
 package org.elstere.booktrkr.service;
 
 import org.elstere.booktrkr.dao.Genre;
-import org.elstere.booktrkr.dao.GenreRepository;
+import org.elstere.booktrkr.dao.repository.GenreRepository;
 import org.elstere.booktrkr.dao.ReadingEntry;
-import org.elstere.booktrkr.dao.ReadingEntryRepository;
 import org.elstere.booktrkr.exceptions.BookTrackerBadRequestException;
-import org.elstere.booktrkr.model.GenreInbound;
-import org.elstere.booktrkr.model.GenreOutbound;
+import org.elstere.booktrkr.api.entities.inbound.GenreInbound;
+import org.elstere.booktrkr.api.entities.outbound.GenreOutbound;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -19,6 +19,7 @@ public class GenreService {
 
     private GenreRepository repository;
 
+    @Autowired
     public GenreService(GenreRepository repository){
         this.repository = repository;
     }
@@ -37,6 +38,13 @@ public class GenreService {
         Genre unwrapped = genre.get();
         return Optional.of(new GenreOutbound(unwrapped.getId(), unwrapped.getName(), unwrapped.getCategory(),
                 unwrapped.getDescription(), unwrapped.getCreated_ts()));
+    }
+
+    public Optional<GenreOutbound> searchGenreByName(String name){
+        Optional<Genre> maybeGenre = this.repository.findByName(name);
+        if(maybeGenre.isPresent()){
+
+        }
     }
 
     public List<String> getAllReadingEntriesForGenre(UUID id){

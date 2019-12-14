@@ -3,6 +3,7 @@ package org.elstere.booktrkr.dao;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @Entity
 @Data
 @Slf4j
+@Builder
 @NoArgsConstructor
 public class ReadingEntry extends EntityWithUUID implements Serializable {
 

@@ -1,5 +1,6 @@
-package org.elstere.booktrkr.dao;
+package org.elstere.booktrkr.dao.repository;
 
+import org.elstere.booktrkr.dao.GithubProject;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.UUID;
