@@ -33,11 +33,7 @@ public class GenreController {
     @ResponseBody
     public ResponseEntity fetchGenreById(@PathVariable UUID id){
         Optional<GenreOutbound> genreOutbound = this.service.getGenreById(id);
-        if(genreOutbound.isPresent()){
-            return ResponseEntity.ok(genreOutbound);
-        } else{
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.of(genreOutbound);
     }
 
     @GetMapping("/genre/{id}/readingEntries")
@@ -53,8 +49,8 @@ public class GenreController {
     @ResponseBody
     public ResponseEntity insertGenre(@RequestBody GenreInbound genre){
         log.info("GenreInbound is: {}", genre.toString());
-        Optional<GenreOutbound> newGenre = this.service.insertGenre(genre);
-        UUID id = newGenre.map(GenreOutbound::getId).orElse(new UUID(0, 0));
+        UUID id  = this.service.insertGenre(genre);
+        //TODO map the exception to a HTTP response
         return ResponseEntity.ok(id);
     }
 }

@@ -1,26 +1,19 @@
 package org.elstere.booktrkr.api.entities.outbound;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
+import org.elstere.booktrkr.api.entities.common.GenrePayload;
 
-import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class GenreOutbound {
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
+public class GenreOutbound extends GenrePayload {
 
     private UUID id;
-
-    @NotNull
-    private String name;
-
-    private String category;
-
-    private String description;
 
     private Timestamp created_ts;
 }

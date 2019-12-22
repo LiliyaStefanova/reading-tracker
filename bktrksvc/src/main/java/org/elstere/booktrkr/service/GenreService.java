@@ -6,6 +6,7 @@ import org.elstere.booktrkr.dao.ReadingEntry;
 import org.elstere.booktrkr.exceptions.BookTrackerBadRequestException;
 import org.elstere.booktrkr.api.entities.inbound.GenreInbound;
 import org.elstere.booktrkr.api.entities.outbound.GenreOutbound;
+import org.elstere.booktrkr.exceptions.BookTrackerServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,49 +27,49 @@ public class GenreService {
 
     public Set<GenreOutbound> getAllGenres(){
         Set<Genre> genres = new HashSet<>(this.repository.findAll());
-        return genres.stream().map(g -> new GenreOutbound(g.getId(), g.getName(), g.getCategory(), g.getDescription(), g.getCreated_ts()))
+        return genres.stream().map(this::createGenreOutbound)
                 .collect(Collectors.toSet());
     }
 
     public Optional<GenreOutbound> getGenreById(UUID id){
-        Optional<Genre> genre = this.repository.findById(id);
-        if(genre.isEmpty()){
+        Optional<Genre> maybeGenre = this.repository.findById(id);
+        if(maybeGenre.isEmpty()){
             return Optional.empty();
         }
-        Genre unwrapped = genre.get();
-        return Optional.of(new GenreOutbound(unwrapped.getId(), unwrapped.getName(), unwrapped.getCategory(),
-                unwrapped.getDescription(), unwrapped.getCreated_ts()));
+        Genre unwrapped = maybeGenre.get();
+        return Optional.of(this.createGenreOutbound(unwrapped));
     }
 
-    public Optional<GenreOutbound> searchGenreByName(String name){
-        Optional<Genre> maybeGenre = this.repository.findByName(name);
-        if(maybeGenre.isPresent()){
+    public List<GenreOutbound> searchGenreByName(String name){
 
-        }
+        return this.repository.findByName(name).stream().map(this::createGenreOutbound).collect(Collectors.toList());
     }
 
     public List<String> getAllReadingEntriesForGenre(UUID id){
-        Optional<Genre> genre = this.repository.findById(id);
-        //FIXME
-        return genre.get().getReadingEntries().stream().map(ReadingEntry::getTitle).collect(Collectors.toList());
+        Optional<Genre> maybeGenre = this.repository.findById(id);
+        if(maybeGenre.isEmpty()){
+            return List.of();
+        }
+        return maybeGenre.get().getReadingEntries().stream().map(ReadingEntry::getTitle).collect(Collectors.toList());
     }
 
-    public Optional<GenreOutbound> insertGenre(GenreInbound inbound){
-        String name = inbound.getName();
-        String category = inbound.getCategory();
-        String descr = inbound.getDescription();
-        //TODO turn into an enum
-        if(!List.of("fiction", "non-fiction").contains(category)){
-            throw new BookTrackerBadRequestException();
-        } else {
-            Genre genre = new Genre(name, category, descr);
+    public UUID insertGenre(GenreInbound inbound){
+            Genre genre = new Genre(inbound.getName(), inbound.getCategory(), inbound.getDescription());
             genre.setCreated_ts(Timestamp.from(Instant.now()));
             this.repository.save(genre);
-            if (genre.getId()!=null) {
-                GenreOutbound outbound = new GenreOutbound(genre.getId(), genre.getName(), genre.getCategory(), genre.getDescription(), genre.getCreated_ts());
-                return Optional.of(outbound);
+            if (genre.getId()==null) {
+                return null;
             }
-        }
-            return Optional.empty();
+            return genre.getId();
+    }
+
+    private GenreOutbound createGenreOutbound(Genre genre){
+        return GenreOutbound.builder()
+                .id(genre.getId())
+                .name(genre.getName())
+                .category(genre.getCategory())
+                .description(genre.getDescription())
+                .created_ts(genre.getCreated_ts())
+                .build();
     }
 }

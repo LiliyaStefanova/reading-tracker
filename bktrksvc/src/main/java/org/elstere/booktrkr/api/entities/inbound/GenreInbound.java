@@ -1,18 +1,14 @@
 package org.elstere.booktrkr.api.entities.inbound;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
+import org.elstere.booktrkr.api.entities.common.GenrePayload;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class GenreInbound {
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
+public class GenreInbound extends GenrePayload {
 
-    private String name;
-
-    private String category;
-
-    private String description;
 }
 

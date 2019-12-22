@@ -9,7 +9,9 @@ import java.util.UUID;
 
 public interface GenreRepository extends PagingAndSortingRepository<Genre, UUID> {
 
-    Optional<Genre> findByName(String name);
+    Optional<Genre> findById(UUID id);
+
+    List<Genre> findByName(String name);
 
     List<Genre> findAll();
 
