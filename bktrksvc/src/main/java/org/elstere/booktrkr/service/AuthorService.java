@@ -1,6 +1,7 @@
 package org.elstere.booktrkr.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.elstere.booktrkr.api.entities.outbound.AuthorOutbound;
 import org.elstere.booktrkr.dao.*;
 import org.elstere.booktrkr.dao.repository.AuthorRepository;
 import org.elstere.booktrkr.dao.repository.AuthorshipRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -27,53 +29,64 @@ public class AuthorService {
 
 
     @Autowired
-    public AuthorService(AuthorRepository authorRepository, ReadingEntryRepository readingEntryRepository, AuthorshipRepository authorshipRepository){
+    public AuthorService(AuthorRepository authorRepository, ReadingEntryRepository readingEntryRepository, AuthorshipRepository authorshipRepository) {
         this.authorRepository = authorRepository;
         this.readingEntryRepository = readingEntryRepository;
         this.authorshipRepository = authorshipRepository;
     }
 
-    public Optional<Author> getAuthorById(UUID id){
+    public Optional<AuthorOutbound> getAuthorById(UUID id) {
 
         Optional<Author> maybeAuthor =  authorRepository.findById(id);
-        return maybeAuthor;
+        if(maybeAuthor.isPresent()){
+            Author author = maybeAuthor.get();
+            return Optional.of(this.createAuthorOutboundPayload(author));
+        } else{
+            return Optional.empty();
+        }
     }
 
-    public List<Author> searchByName(String searchTerm){
-        return authorRepository.findByNameContains(searchTerm);
+    public List<AuthorOutbound> searchByName(String searchTerm) {
+        return authorRepository.findByNameContains(searchTerm)
+                .stream()
+                .map(this::createAuthorOutboundPayload)
+                .collect(Collectors.toList());
     }
 
-    public Set<Author> getAllAuthors(){
-        return new HashSet<>(authorRepository.findAll());
+    public Set<AuthorOutbound> getAllAuthors() {
+        return authorRepository.findAll().stream()
+                .map(this::createAuthorOutboundPayload)
+                .collect(Collectors.toSet());
     }
 
-    public UUID insertAuthor(AuthorInbound authorInbound){
 
-        Author newAuthor = new Author();
-        newAuthor.setName(authorInbound.getName());
-        newAuthor.setBio(authorInbound.getBio());
-        newAuthor.setNotes(authorInbound.getNotes());
-        newAuthor.setWebsite(authorInbound.getNotes());
-        newAuthor.setAuthorship(Set.of());
-        newAuthor.setCreated_ts(Timestamp.from(Instant.now()));
+
+    public UUID insertAuthor(AuthorInbound authorInbound) {
+
+        Author newAuthor = Author.builder().name(authorInbound.getName())
+                .bio(authorInbound.getBio())
+                .notes(authorInbound.getNotes())
+                .website(authorInbound.getWebsite())
+                .authorship(Set.of())
+                .created_ts(Timestamp.from(Instant.now())).build();
         this.authorRepository.save(newAuthor);
 
-        if(newAuthor.getId()!=null){
+        if (newAuthor.getId() != null) {
             return newAuthor.getId();
-        } else{
+        } else {
             log.error("New entry with name {} could not be saved to the DB", authorInbound.getName());
             throw new BookTrackerServiceException("Could not save new author entry");
         }
     }
 
-    public UUID associatedReadingEntryWithAuthor(UUID readingEntryID, UUID authorId){
+    public UUID associatedReadingEntryWithAuthor(UUID readingEntryID, UUID authorId) {
 
-        Authorship newAuthorship  = new Authorship();
+        Authorship newAuthorship = new Authorship();
 
         Optional<Author> maybeAuthor = this.authorRepository.findById(authorId);
         Optional<ReadingEntry> maybeReadingEntry = this.readingEntryRepository.findById(readingEntryID);
 
-        if(maybeAuthor.isEmpty() || maybeReadingEntry.isEmpty()){
+        if (maybeAuthor.isEmpty() || maybeReadingEntry.isEmpty()) {
             throw new BookTrackerNotFoundException("Could not find author or reading entry you are trying to associate with them");
         }
         newAuthorship.setAuthor(maybeAuthor.get());
@@ -81,15 +94,25 @@ public class AuthorService {
         newAuthorship.setCreated_ts(Timestamp.from(Instant.now()));
         authorshipRepository.save(newAuthorship);
 
-        if(newAuthorship.getId()!=null){
+        if (newAuthorship.getId() != null) {
             log.error("New authorship entry for author {} and reading entry {} could not be created in the DB", authorId, readingEntryID);
             throw new BookTrackerServiceException("Could not associate reading entry and author");
 
-        } else{
+        } else {
             //TODO - do we need to do this? Test
             maybeAuthor.get().getAuthorship().add(newAuthorship);
         }
 
         return newAuthorship.getId();
+    }
+
+    private AuthorOutbound createAuthorOutboundPayload(Author author){
+        return AuthorOutbound.builder()
+                .id(author.getId())
+                .name(author.getName())
+                .bio(author.getBio())
+                .notes(author.getNotes())
+                .website(author.getNotes())
+                .build();
     }
 }

@@ -1,12 +1,13 @@
 package org.elstere.booktrkr.api.controllers;
 
-import org.elstere.booktrkr.dao.Author;
+import org.elstere.booktrkr.api.entities.outbound.AuthorOutbound;
 import org.elstere.booktrkr.api.entities.inbound.AuthorInbound;
 import org.elstere.booktrkr.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -24,33 +25,34 @@ public class AuthorController {
     @GetMapping("/author/all")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public ResponseEntity<Set<Author>> fetchAuthors(){
-        Set<Author> authorResults =  this.authorService.getAllAuthors();
+    public ResponseEntity<Set<AuthorOutbound>> fetchAuthors(){
+        Set<AuthorOutbound> authorResults =  this.authorService.getAllAuthors();
         return ResponseEntity.ok(authorResults);
     }
 
     @GetMapping("/author/{id}")
     @CrossOrigin(origins="*")
     @ResponseBody
-    public ResponseEntity<Author> fetchAuthorById(@PathVariable UUID id){
+    public ResponseEntity<AuthorOutbound> fetchAuthorById(@PathVariable UUID id){
 
-        Optional<Author> maybeAuthor = this.authorService.getAuthorById(id);
+        Optional<AuthorOutbound> maybeAuthor = this.authorService.getAuthorById(id);
         return ResponseEntity.of(maybeAuthor);
     }
 
     @GetMapping("/author")
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public ResponseEntity<Author>  searchByName(@RequestParam String searchTerm){
+    public ResponseEntity<List<AuthorOutbound>>  searchByName(@RequestParam String searchTerm){
 
-        //TODO
-        return ResponseEntity.ok(null);
+        List<AuthorOutbound> authorResults = this.authorService.searchByName(searchTerm);
+        return ResponseEntity.ok(authorResults);
     }
 
     @PostMapping("/author")
     @CrossOrigin(origins="*")
     @ResponseBody
     public ResponseEntity<UUID> insertAuthor(AuthorInbound authorInbound){
+        //TODO map exception to service exception response
             return ResponseEntity.ok(this.authorService.insertAuthor(authorInbound));
 
         }

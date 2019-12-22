@@ -1,20 +1,12 @@
 package org.elstere.booktrkr.api.entities.inbound;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+import org.elstere.booktrkr.api.entities.common.AuthorPayload;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-@Builder
-public class AuthorInbound {
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
+public class AuthorInbound  extends AuthorPayload {
 
-    private String name;
-
-    private String bio;
-
-    private String website;
-
-    private String notes;
 
 }
