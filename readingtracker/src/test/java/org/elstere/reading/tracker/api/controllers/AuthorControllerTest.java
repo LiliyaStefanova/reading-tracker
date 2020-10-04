@@ -3,13 +3,14 @@ package org.elstere.reading.tracker.api.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.elstere.reading.tracker.service.AuthorService;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 @Slf4j
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AuthorControllerTest {
 
     @InjectMocks
