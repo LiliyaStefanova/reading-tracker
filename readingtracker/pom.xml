@@ -16,9 +16,7 @@
     <description>Reading Tracker Service</description>
 
     <properties>
-        <java.version>14</java.version>
-        <maven.compiler.release>14</maven.compiler.release>
-        <maven.target.release>14</maven.target.release>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>

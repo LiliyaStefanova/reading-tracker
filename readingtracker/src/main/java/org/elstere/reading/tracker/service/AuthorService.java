@@ -2,7 +2,6 @@ package org.elstere.reading.tracker.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.elstere.reading.tracker.api.entities.outbound.AuthorOutbound;
-import org.elstere.booktrkr.dao.*;
 import org.elstere.reading.tracker.dao.Author;
 import org.elstere.reading.tracker.dao.Authorship;
 import org.elstere.reading.tracker.dao.ReadingEntry;
