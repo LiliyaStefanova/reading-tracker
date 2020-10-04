@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {MessageService} from './message.service';
 import {Observable} from 'rxjs/index';
-import { AuthorsApiService } from './api/authors.api.service';
+import { AuthorApiService } from './api/authors.api.service';
 import { Author } from '../representations/author';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Author } from '../representations/author';
 export class AuthorsService {
   authors: Author[] = [];
 
-  constructor(private messageService: MessageService, private apiService: AuthorsApiService) {}
+  constructor(private messageService: MessageService, private apiService: AuthorApiService) {}
   addAuthor(author: Author): Observable<Author> {
     return this.apiService.addAuthor(author);
   }
